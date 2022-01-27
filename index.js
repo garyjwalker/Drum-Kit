@@ -13,12 +13,14 @@ var drumElements = document.querySelectorAll(".drum");
 for (var i = 0; i < drumElements.length; i++) {
 	drumElements[i].addEventListener("click", function(){
 		playSound(this.textContent);
+		buttonAnimation(this.textContent);
 	});
 }
 
 // Handle keypresses.
 document.addEventListener("keydown", function(event) {
 	playSound(event.key);
+	buttonAnimation(event.key);
 });
 
 // Function to play sound.	
@@ -58,3 +60,10 @@ function playSound(buttonLetter) {
 }
 
 
+function buttonAnimation(buttonLetter) {
+	let button = document.querySelector("." + buttonLetter);
+	button.classList.add("pressed");
+	setTimeout(function () {
+		button.classList.remove("pressed");
+	}, 100);
+}
